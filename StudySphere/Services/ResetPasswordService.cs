@@ -27,10 +27,10 @@ namespace StudySphere.Services
             await smtpClient.SendMailAsync("calebwalls@gmail.com", email, "Reset Password", "Hi, we received a request to reset your password follow this link: https://www.facebook.com/ to reset your password");
             return "Email sent.";
         }
-        //public async Task<string> ResetPassword(CreateUser user, CancellationToken cancellationToken)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<string> ResetPassword(CreateUser user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
 
         private async Task ValidateUser(string email)
         {
