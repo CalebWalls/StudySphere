@@ -18,22 +18,36 @@ namespace StudySphere.Services
         }
         public async Task<string> ResetPasswordLink(string email, CancellationToken cancellationToken)
         {
-            await ValidateUser(email);
+            try
+            {
+                await ValidateUser(email);
 
-            var resetToken = Guid.NewGuid().ToString();
+                var resetToken = Guid.NewGuid().ToString();
 
-            return await SendResetEmail(email, resetToken);
+                return await SendResetEmail(email, resetToken);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            
         }
         public async Task<string> ResetPassword(ResetPassword request, CancellationToken cancellationToken)
         {
-            var user = await _userContext.Users.Where(x => x.ResetToken == request.Token).FirstOrDefaultAsync();
-            if (user == null)
-                throw new Exception("Invalid token");
+            try
+            {
+                var user = await _userContext.Users.Where(x => x.ResetToken == request.Token).FirstOrDefaultAsync() ?? throw new Exception("Invalid token");
 
-            if (request.NewPassword != request.ConfirmPassword)
-                throw new Exception("Password and confirm password must match.");
+                if (request.NewPassword != request.ConfirmPassword)
+                    throw new Exception("Password and confirm password must match.");
 
-            return await ChangePassword(request, user);           
+                return await ChangePassword(request, user);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+                       
         }
 
         private async Task<string> ChangePassword(ResetPassword request, Users? user)
@@ -58,10 +72,10 @@ namespace StudySphere.Services
         {
             //TODO: add encryption to reset token
             var user = await _userContext.Users.Where(x => x.Username == email).FirstOrDefaultAsync();
-            user.ResetToken = resetToken;
+            user!.ResetToken = resetToken;
             _userContext.Update(user);
             await _userContext.SaveChangesAsync();
-            //TODO: move data to secrets
+
             var smtpClient = new SmtpClient(_configs.SmtpServer)
             {
                 Port = 587,
