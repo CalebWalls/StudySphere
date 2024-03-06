@@ -17,13 +17,7 @@ namespace StudySphere.Services
             {
                 await ValidateUser(user);
 
-                await SaveUserToDatabase(user);
-
-                
-
-                return "User created successfully.";
-
-
+                return await SaveUserToDatabase(user);
             }
             catch (Exception e)
             {
@@ -41,10 +35,11 @@ namespace StudySphere.Services
                 throw new Exception("Password and confirm password must match.");
         }
 
-        private async Task SaveUserToDatabase(CreateUser user)
+        private async Task<string> SaveUserToDatabase(CreateUser user)
         {
             _userContext.Users.Add(new Users { Username = user.Username, Password = user.Password });
             await _userContext.SaveChangesAsync();
+            return "User created successfully.";
         }
     }
 }

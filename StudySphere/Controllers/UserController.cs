@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudySphere.Models;
 using StudySphere.Services;
-using System.Net.Mail;
-using System.Net;
 
 namespace StudySphere.Controllers
 {
@@ -37,10 +35,16 @@ namespace StudySphere.Controllers
         }
 
         [HttpPost]
-        [Route("resetPassword")]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetAccount user, CancellationToken cancellationToken)
+        [Route("resetPasswordLink")]
+        public async Task<IActionResult> ResetPasswordLink([FromBody] ResetAccount user, CancellationToken cancellationToken)
         {
             return Ok(await _resetPasswordService.ResetPasswordLink(user.Email, cancellationToken));
+        }
+
+        [HttpPost("resetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPassword request, CancellationToken cancellationToken)
+        {
+            return Ok(await _resetPasswordService.ResetPassword(request, cancellationToken));
         }
     }
 }

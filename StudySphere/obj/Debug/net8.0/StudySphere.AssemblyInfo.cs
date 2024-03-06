@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("f6fdfed2-e037-4993-8d71-892681f92344")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("StudySphere")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb2c6b31f0cfe35e5f83583ca4bf437af881ca48")]
 [assembly: System.Reflection.AssemblyProductAttribute("StudySphere")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StudySphere")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using StudySphere;
 using StudySphere.Contexts;
+using StudySphere.Models;
 using StudySphere.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<UserLoginConfigs>(builder.Configuration.GetSection("UserLogin"));
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<ILoginService, LoginService>();
