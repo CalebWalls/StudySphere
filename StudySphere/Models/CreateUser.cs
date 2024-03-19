@@ -10,5 +10,9 @@ namespace StudySphere.Models
         public required string Password { get; set; }
         [Required]
         public required string ConfirmPassword { get; set; }
+        [Required]
+        public required string FirstName { get; set; }
+        [Required]
+        public required string LastName { get; set; }
     }
 }

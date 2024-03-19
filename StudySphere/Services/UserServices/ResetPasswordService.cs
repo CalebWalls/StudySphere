@@ -32,7 +32,7 @@ namespace StudySphere.Services
             }
             
         }
-        public async Task<string> ResetPassword(ResetPassword request, CancellationToken cancellationToken)
+        public async Task<string> ResetPassword(NewPasswordRequest request, CancellationToken cancellationToken)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace StudySphere.Services
                        
         }
 
-        private async Task<string> ChangePassword(ResetPassword request, Users? user)
+        private async Task<string> ChangePassword(NewPasswordRequest request, Users user)
         {
             user.Password = request.NewPassword;
             _userContext.Update(user);
@@ -73,18 +73,20 @@ namespace StudySphere.Services
             //TODO: add encryption to reset token
             var user = await _userContext.Users.Where(x => x.Username == email).FirstOrDefaultAsync();
             user!.ResetToken = resetToken;
-            _userContext.Update(user);
-            await _userContext.SaveChangesAsync();
 
             var smtpClient = new SmtpClient(_configs.SmtpServer)
             {
                 Port = 587,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(_configs.AccountEmail, _configs.EmailCode),
+                Credentials = new NetworkCredential(_configs.AccountEmail, _configs.SmtpServer),
                 EnableSsl = true,
             };
 
             await smtpClient.SendMailAsync(_configs.AccountEmail!, email, "Reset Password", $"Hi, we received a request to reset your password follow this link: https://www.example.com/resetPassword?token={resetToken} to reset your password");
+
+            _userContext.Update(user);
+            await _userContext.SaveChangesAsync();
+
             return "Email sent.";
         }
 

@@ -1,6 +1,9 @@
 ﻿CREATE TABLE Users (
-    Username VARCHAR(255),
-    Password VARCHAR(255),
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Username VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
     ResetToken VARCHAR(255),
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL
 );
 

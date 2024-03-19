@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudySphere.Contexts;
+using StudySphere.Services.UserServices;
 
 namespace StudySphere.Services
 {
@@ -13,13 +14,13 @@ namespace StudySphere.Services
         }
         public async Task<IActionResult> Login(string username, string password, CancellationToken cancellationToken)
         {
-            var foundUser = await _userContext.Users.Where(x => x.Username.ToLower() == username.ToLower() && x.Password == password).Select(x => x.Username).FirstOrDefaultAsync();
+            var foundUser = await _userContext.Users.Where(x => x.Username.ToLower() == username.ToLower() && x.Password == password).Select(x => new { x.FirstName, x.LastName}).FirstOrDefaultAsync();
 
             //TODO: add lock out
             if (foundUser == null)
-                return new BadRequestObjectResult("Invalid username or password");
+                throw new Exception("Invalid username or password");
 
-            return new OkObjectResult($"Login Successful! Welcome back {foundUser}");
+            return new OkObjectResult($"Login Successful! Welcome back {foundUser.FirstName} {foundUser.LastName}");
         }
     }
 }

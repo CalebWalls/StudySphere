@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace StudySphere.Services
+namespace StudySphere.Services.UserServices
 {
     public interface ILoginService
     {

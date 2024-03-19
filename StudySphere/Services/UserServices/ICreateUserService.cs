@@ -1,6 +1,6 @@
 ﻿using StudySphere.Models;
 
-namespace StudySphere.Services
+namespace StudySphere.Services.UserServices
 {
     public interface ICreateUserService
     {

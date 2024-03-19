@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using StudySphere.Contexts;
 using StudySphere.Models;
 using StudySphere.Services;
+using StudySphere.Services.UserServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyPolicy",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -28,6 +39,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("MyPolicy"); // Apply the CORS policy
 
 app.UseAuthorization();
 
