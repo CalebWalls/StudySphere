@@ -32,7 +32,6 @@ namespace StudySphere.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginFields user, CancellationToken cancellationToken)
         {
-
             return await _loginService.Login(user.Username, user.Password, cancellationToken);
         }
 

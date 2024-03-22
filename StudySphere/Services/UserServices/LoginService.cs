@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudySphere.Contexts;
 using StudySphere.Services.UserServices;
@@ -18,7 +19,7 @@ namespace StudySphere.Services
 
             //TODO: add lock out
             if (foundUser == null)
-                throw new Exception("Invalid username or password");
+                return new BadRequestObjectResult("Invalid username or password");
 
             return new OkObjectResult($"Login Successful! Welcome back {foundUser.FirstName} {foundUser.LastName}");
         }
