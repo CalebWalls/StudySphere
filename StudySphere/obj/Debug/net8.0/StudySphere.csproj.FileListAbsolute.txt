@@ -69,3 +69,8 @@ C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Debug\net8.0\ru
 C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\obj\Debug\net8.0\StudySphere.sourcelink.json
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Debug\net8.0\Azure.Data.AppConfiguration.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Debug\net8.0\Azure.Messaging.EventGrid.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Debug\net8.0\Azure.Security.KeyVault.Secrets.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Debug\net8.0\Microsoft.Azure.AppConfiguration.AspNetCore.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Debug\net8.0\Microsoft.Extensions.Configuration.AzureAppConfiguration.dll

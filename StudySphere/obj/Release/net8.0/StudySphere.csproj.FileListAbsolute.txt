@@ -69,3 +69,8 @@ C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\obj\Release\net8.0\
 C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\obj\Release\net8.0\StudySphere.pdb
 C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\obj\Release\net8.0\StudySphere.genruntimeconfig.cache
 C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\obj\Release\net8.0\ref\StudySphere.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Release\net8.0\Azure.Data.AppConfiguration.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Release\net8.0\Azure.Messaging.EventGrid.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Release\net8.0\Azure.Security.KeyVault.Secrets.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Release\net8.0\Microsoft.Azure.AppConfiguration.AspNetCore.dll
+C:\Users\CalebWalls\Desktop\Personal\StudySphere\StudySphere\bin\Release\net8.0\Microsoft.Extensions.Configuration.AzureAppConfiguration.dll

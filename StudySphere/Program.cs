@@ -16,27 +16,46 @@ builder.Services.AddTransient<IResetPasswordService, ResetPasswordService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-builder.Services.AddCors(options =>
+
+if (!builder.Environment.IsDevelopment())
 {
-    options.AddPolicy("MyPolicy",
-        builder =>
-        {
-            builder.WithOrigins("https://studysphereedu.azurewebsites.net")
-                   .AllowAnyHeader()
-                   .AllowAnyMethod();
-        });
-});
+    builder.Configuration.AddAzureAppConfiguration(builder.Configuration.GetConnectionString("AzureAppConfig"));
+    builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("MyPolicy",
+            builder =>
+            {
+                builder.WithOrigins("https://studysphereedu.azurewebsites.net")
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+            });
+    });
+
+}
+else
+{
+    builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("MyPolicy",
+            builder =>
+            {
+                builder.WithOrigins("http://localhost:4200")
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+            });
+    });
+}
+
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-//}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
